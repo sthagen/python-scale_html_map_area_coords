@@ -7,7 +7,7 @@ ENCODING = "utf-8"
 ENCODING_ERRORS_POLICY = "ignore"
 
 
-def scale_html_map_area_coords(reduction_factor, html_read_path):
+def scale_html_map_area_coords(reduction_factor: int, html_read_path: str):
     """Naive scaling of the coords attribute values relying on attribute name and values being on the same line."""
     if not html_read_path:  # Early raise
         raise ValueError("path to html file missing")
