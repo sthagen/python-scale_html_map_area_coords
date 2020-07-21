@@ -14,6 +14,10 @@ def test_apply_scaling_ok_empty_string():
     assert do.apply_scaling(2, '') == ''
 
 
+def test_apply_scaling_ok_string_with_target():
+    assert do.apply_scaling(2, ' coords="0,0" yes') == ' coords="0,0" yes'
+
+
 def test_apply_scaling_nok_list_of_ints():
     message = r"'list' object has no attribute 'rstrip'"
     with pytest.raises(AttributeError, match=message):
