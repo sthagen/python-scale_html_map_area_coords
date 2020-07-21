@@ -77,7 +77,7 @@ def test_scale_html_map_area_coords_nok_reduction_gibven_but_non_existing_path()
         do.scale_html_map_area_coords(2, non_existing_file_path)
 
 
-@mock.patch("open")
+@mock.patch("builtins.open")
 def test_scale_html_map_area_coords_ok_with_file_mock():
     pass
 
