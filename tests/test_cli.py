@@ -17,5 +17,7 @@ def test_main_nok_reduction_gibven_but_non_existing_path():
 
 
 @mock.patch('builtins.open', mock.mock_open(read_data=' coords="0,0" no_rstrip'))
-def test_main_ok_with_file_mock():
-    assert cli.main([2, '/call/me/mock.html']) == ' coords="0,0" no_rstrip\n'
+def test_main_ok_with_file_mock(capsys):
+    assert cli.main([2, '/call/me/mock.html']) is None
+    out, err = capsys.readouterr()
+    assert out == ' coords="0,0" no_rstrip\n'
