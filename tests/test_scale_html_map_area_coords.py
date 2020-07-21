@@ -15,7 +15,7 @@ def test_apply_scaling_ok_empty_string():
 
 
 def test_apply_scaling_ok_string_with_target():
-    assert do.apply_scaling(2, ' coords="0,0" yes') == ' coords="0,0" yes'
+    assert do.apply_scaling(2, ' coords="0,0" no_rstrip') == ' coords="0,0" no_rstrip'
 
 
 def test_apply_scaling_nok_list_of_ints():
