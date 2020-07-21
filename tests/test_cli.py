@@ -21,3 +21,10 @@ def test_main_ok_with_file_mock(capsys):
     assert cli.main([2, '/call/me/mock.html']) is None
     out, err = capsys.readouterr()
     assert out == ' coords="0,0" no_rstrip\n'
+
+
+@mock.patch('builtins.open', mock.mock_open(read_data=' coords="1,3" no_rstrip'))
+def test_main_ok_with_file_mock_and_non_zero_coords(capsys):
+    assert cli.main([2, '/call/me/mock.html']) is None
+    out, err = capsys.readouterr()
+    assert out == ' coords="0,1" no_rstrip\n'
