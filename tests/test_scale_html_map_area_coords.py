@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=missing-docstring,unused-import,reimported
+import pathlib
 import pytest  # type: ignore
 
 import scale_html_map_area_coords.scale_html_map_area_coords as do
@@ -29,3 +30,10 @@ def test_scale_html_map_area_coords_nok_reduction_gibven_but_empty_path():
     message = r"path to html file missing"
     with pytest.raises(ValueError, match=message):
         do.scale_html_map_area_coords(2, '')
+
+
+def test_scale_html_map_area_coords_nok_reduction_gibven_but_invalid_path():
+    sequence_of_ints = [1, 2, 3]
+    message = f"\\[Errno 20\\] Not a directory: {sequence_of_ints[0]}"
+    with pytest.raises(NotADirectoryError, match=message):
+        do.scale_html_map_area_coords(2, sequence_of_ints)
