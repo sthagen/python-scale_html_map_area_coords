@@ -34,6 +34,6 @@ def test_scale_html_map_area_coords_nok_reduction_gibven_but_empty_path():
 
 def test_scale_html_map_area_coords_nok_reduction_gibven_but_invalid_path():
     sequence_of_ints = [1, 2, 3]
-    message = f"\\[Errno 20\\] Not a directory: {sequence_of_ints[0]}"
-    with pytest.raises(NotADirectoryError, match=message):
+    message = r"expected str, bytes or os.PathLike object, not list"
+    with pytest.raises(TypeError, match=message):
         do.scale_html_map_area_coords(2, sequence_of_ints)
