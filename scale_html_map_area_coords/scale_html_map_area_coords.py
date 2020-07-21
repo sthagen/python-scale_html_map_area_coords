@@ -7,7 +7,7 @@ ENCODING = "utf-8"
 ENCODING_ERRORS_POLICY = "ignore"
 
 
-def apply_scaling(text_line: str):
+def apply_scaling(reduction_factor:int, text_line: str):
     """Apply the scaling if coords attribute present in line."""
     coords_token_start = ' coords="'
     coords_token_end = '" '
@@ -29,5 +29,5 @@ def scale_html_map_area_coords(reduction_factor: int, html_read_path: str):
     scaled = []
     with open(html_read_path, "rt", encoding=ENCODING) as handle:
         for line in handle:
-            scaled.append(apply_scaling(line))
+            scaled.append(apply_scaling(reduction_factor, line))
     return '\n'.join(scaled) + '\n'
