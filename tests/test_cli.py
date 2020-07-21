@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=missing-docstring,unused-import,reimported
 import pathlib
+from unittest import mock  # pylint: disable=no-name-in-module
+
 import pytest  # type: ignore
 
 import scale_html_map_area_coords.cli as cli
@@ -12,3 +14,8 @@ def test_main_nok_reduction_gibven_but_non_existing_path():
     message = f"\\[Errno 2\\] No such file or directory: '{non_existing_file_path}'"
     with pytest.raises(FileNotFoundError, match=message):
         cli.main([2, non_existing_file_path])
+
+
+@mock.patch('builtins.open', mock.mock_open(read_data=' coords="0,0" no_rstrip'))
+def test_main_ok_with_file_mock():
+    assert cli.main([2, '/call/me/mock.html']) == ' coords="0,0" no_rstrip\n'
