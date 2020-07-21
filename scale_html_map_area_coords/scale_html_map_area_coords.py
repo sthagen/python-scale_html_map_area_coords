@@ -26,5 +26,4 @@ def scale_html_map_area_coords(reduction_factor: int, html_read_path: str):
             numbers_out = [n // reduction_factor for n in numbers_in]
             coords = ','.join(str(s) for s in numbers_out)
             scaled.append(f"{prefix}{coords_token_start}{coords}{coords_token_end}{postfix}")
-            
     return '\n'.join(scaled) + '\n'
