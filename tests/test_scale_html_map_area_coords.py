@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=missing-docstring,unused-import,reimported
 import pathlib
-from unittest import mock  # pylint: disable=no-name-in-module
+from unittest import mock, mock_open  # pylint: disable=no-name-in-module
 
 import pytest  # type: ignore
 
@@ -77,7 +77,6 @@ def test_scale_html_map_area_coords_nok_reduction_gibven_but_non_existing_path()
         do.scale_html_map_area_coords(2, non_existing_file_path)
 
 
-@mock.patch("builtins.open")
+@mock.patch('builtins.open', mock_open(read_data=' coords="0,0" no_rstrip'))
 def test_scale_html_map_area_coords_ok_with_file_mock():
-    pass
-
+    assert do.scale_html_map_area_coords(2, ' coords="0,0" no_rstrip') == ' coords="0,0" no_rstrip'
