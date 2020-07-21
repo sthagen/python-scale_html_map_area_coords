@@ -79,4 +79,4 @@ def test_scale_html_map_area_coords_nok_reduction_gibven_but_non_existing_path()
 
 @mock.patch('builtins.open', mock.mock_open(read_data=' coords="0,0" no_rstrip'))
 def test_scale_html_map_area_coords_ok_with_file_mock():
-    assert do.scale_html_map_area_coords(2, ' coords="0,0" no_rstrip') == ' coords="0,0" no_rstrip'
+    assert do.scale_html_map_area_coords(2, ' coords="0,0" no_rstrip') == ' coords="0,0" no_rstrip\n'
