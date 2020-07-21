@@ -11,7 +11,7 @@ import scale_html_map_area_coords.cli as cli
 def test_main_nok_reduction_given_but_non_existing_path():
     nef = non_existing_file_path = 'file_does_not_exist'
     assert pathlib.Path(nef).is_file() is False, f"Unexpected file {nef} exists which breaks this test"
-    message = f"\\[Errno 2\\] No such file or directory: '{non_existing_file_path}'"
+    message = r"\[Errno 2\] No such file or directory: '{non_existing_file_path}'"
     with pytest.raises(FileNotFoundError, match=message):
         cli.main([2, non_existing_file_path])
 
@@ -19,10 +19,9 @@ def test_main_nok_reduction_given_but_non_existing_path():
 def test_main_nok_reduction_wrong_type_and_non_existing_path():
     nef = non_existing_file_path = 'file_does_not_exist'
     assert pathlib.Path(nef).is_file() is False, f"Unexpected file {nef} exists which may break other tests"
-    message = f"int\(\) argument must be a string, a bytes-like object or a number, not 'NoneType'"
+    message = r"int\(\) argument must be a string, a bytes-like object or a number, not 'NoneType'"
     with pytest.raises(TypeError, match=message):
         cli.main([None, non_existing_file_path])
-
 
 @mock.patch('builtins.open', mock.mock_open(read_data=' coords="0,0" no_rstrip'))
 def test_main_ok_with_file_mock(capsys):
