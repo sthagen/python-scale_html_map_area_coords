@@ -23,7 +23,7 @@ def scale_html_map_area_coords(reduction_factor, html_read_path):
             prefix, rest = line.split(coords_token_start, 1)
             csv, postfix = rest.split(coords_token_end, 1)
             numbers_in = [int(x.strip()) for x in csv.split(',')]
-            numbers_out = [n // scaled for n in numbers_in]
+            numbers_out = [n // reduction_factor for n in numbers_in]
             coords = ','.join(str(s) for s in numbers_out)
             scaled.append(f"{prefix}{coords_token_start}{coords}{coords_token_end}{postfix}")
             
