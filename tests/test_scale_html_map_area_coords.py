@@ -24,6 +24,12 @@ def test_apply_scaling_nok_string_with_target_start_but_no_end():
         do.apply_scaling(2, ' coords="0,0"no_rstrip')
 
 
+def test_apply_scaling_nok_string_with_target_start_and_end_but_empty_list():
+    message = r"invalid literal for int\(\) with base 10: ''"
+    with pytest.raises(ValueError, match=message):
+        do.apply_scaling(2, ' coords="" no_rstrip')
+
+
 def test_apply_scaling_nok_list_of_ints():
     message = r"'list' object has no attribute 'rstrip'"
     with pytest.raises(AttributeError, match=message):
