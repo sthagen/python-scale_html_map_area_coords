@@ -37,3 +37,11 @@ def test_scale_html_map_area_coords_nok_reduction_gibven_but_invalid_path():
     message = r"expected str, bytes or os.PathLike object, not list"
     with pytest.raises(TypeError, match=message):
         do.scale_html_map_area_coords(2, sequence_of_ints)
+
+
+def test_scale_html_map_area_coords_nok_reduction_gibven_but_non_existing_path():
+    nef = non_existing_folder_path = 'folder_does_not_exist'
+    assert pathlib.Path(nef).is_dir() is False, f"Unexpected folder {nef} exists which breaks this test"
+    message = f"\\[Errno 2\\] No such file or directory: '{non_existing_folder_path}'"
+    with pytest.raises(FileNotFoundError, match=message):
+        do.scale_html_map_area_coords(2, non_existing_folder_path)
