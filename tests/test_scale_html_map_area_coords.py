@@ -36,6 +36,12 @@ def test_apply_scaling_nok_invalid_reduction_type_string_with_target_ok():
         do.apply_scaling(None, ' coords="0,0" no_rstrip')
 
 
+def test_apply_scaling_nok_invalid_reduction_string_with_target_ok():
+    message = r"integer division or modulo by zero"
+    with pytest.raises(ZeroDivisionError, match=message):
+        do.apply_scaling(0, ' coords="0,0" no_rstrip')
+
+
 def test_apply_scaling_nok_list_of_ints():
     message = r"'list' object has no attribute 'rstrip'"
     with pytest.raises(AttributeError, match=message):
