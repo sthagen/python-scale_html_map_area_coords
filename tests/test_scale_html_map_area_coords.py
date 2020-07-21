@@ -30,6 +30,12 @@ def test_apply_scaling_nok_string_with_target_start_and_end_but_empty_list():
         do.apply_scaling(2, ' coords="" no_rstrip')
 
 
+def test_apply_scaling_nok_invalid_reduction_type_string_with_target_ok():
+    message = r"unsupported operand type\(s\) for //: 'int' and 'NoneType'"
+    with pytest.raises(TypeError, match=message):
+        do.apply_scaling(None, ' coords="0,0" no_rstrip')
+
+
 def test_apply_scaling_nok_list_of_ints():
     message = r"'list' object has no attribute 'rstrip'"
     with pytest.raises(AttributeError, match=message):
