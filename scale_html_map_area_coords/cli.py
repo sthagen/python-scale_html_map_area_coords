@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # pylint: disable=line-too-long
-"""Remove blank and empty lines."""
+"""Scale coords attribute values of html map area elements."""
 import sys
 
 from scale_html_map_area_coords.scale_html_map_area_coords import scale_html_map_area_coords
