@@ -18,6 +18,12 @@ def test_apply_scaling_ok_string_with_target():
     assert do.apply_scaling(2, ' coords="0,0" no_rstrip') == ' coords="0,0" no_rstrip'
 
 
+def test_apply_scaling_nok_string_with_target_start_but_no_end():
+    message = r"not enough values to unpack \(expected 2, got 1\)"
+    with pytest.raises(ValueError, match=message):
+        do.apply_scaling(2, ' coords="0,0"no_rstrip')
+
+
 def test_apply_scaling_nok_list_of_ints():
     message = r"'list' object has no attribute 'rstrip'"
     with pytest.raises(AttributeError, match=message):
